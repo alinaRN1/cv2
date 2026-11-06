@@ -1,0 +1,28 @@
+{
+  "train": {
+    "images": 136,
+    "class_pixels": [
+      1377759,
+      293409
+    ]
+  },
+  "val": {
+    "images": 17,
+    "class_pixels": [
+      175638,
+      33258
+    ]
+  },
+  "test": {
+    "images": 17,
+    "class_pixels": [
+      174538,
+      34358
+    ]
+  },
+  "majority_class": 0,
+  "class_names": [
+    "Background",
+    "Person"
+  ]
+}

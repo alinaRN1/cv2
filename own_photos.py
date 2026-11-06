@@ -8,14 +8,16 @@ import numpy as np
 import tensorflow as tf
 
 from lab2 import label_colors
-from prepare_data import CARLA_CLASSES, CAMVID_CLASSES
+from prepare_data import CARLA_CLASSES
 
 PHOTOS = [Path('photos/city.jpg'), Path('photos/harbor.jpg'),
           Path('photos/mountain_road.jpg'), Path('photos/road_and_stream.jpg')]
 
 
 def show_own_photos(name):
-    classes = CARLA_CLASSES if name == 'carla' else CAMVID_CLASSES
+    if name != 'carla':
+        raise ValueError('Эта функция показывает предсказания моделей CARLA')
+    classes = CARLA_CLASSES
     paths = [Path(f'results/{name}.keras'),
              Path(f'results/experiment_32/{name}_inference.keras')]
     images = []
@@ -50,6 +52,35 @@ def show_own_photos(name):
     return predictions
 
 
+def show_people_photos():
+    model = tf.keras.models.load_model('results/pennfudan.keras', compile=False)
+    images = []
+    for path in PHOTOS:
+        image = cv2.imread(str(path), cv2.IMREAD_COLOR)
+        if image is None:
+            raise FileNotFoundError(path)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        images.append(cv2.resize(image, (128, 96), interpolation=cv2.INTER_AREA) / 255.0)
+    images = np.asarray(images, dtype=np.float32)
+    predictions = np.argmax(model(images, training=False).numpy(), axis=-1)
+    colors = np.array([[0, 0, 0], [255, 0, 0]], dtype=np.uint8)
+    fig, axes = plt.subplots(len(images), 2, figsize=(7, 10), squeeze=False)
+    for i, (image, photo) in enumerate(zip(images, PHOTOS)):
+        axes[i, 0].imshow(image)
+        axes[i, 0].set_title(photo.stem.replace('_', ' '))
+        axes[i, 1].imshow(colors[predictions[i]])
+        axes[i, 1].set_title('Предсказанная маска')
+        for axis in axes[i]:
+            axis.axis('off')
+    fig.legend(handles=[Patch(color='black', label='Фон'),
+                        Patch(color='red', label='Человек')],
+               loc='lower center', ncol=2)
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    fig.savefig('results/pennfudan_own_photos.png', dpi=140, bbox_inches='tight')
+    plt.show()
+    return predictions
+
+
 if __name__ == '__main__':
-    for dataset in ('carla', 'camvid'):
-        show_own_photos(dataset)
+    show_own_photos('carla')
+    show_people_photos()

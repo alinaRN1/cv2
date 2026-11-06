@@ -1,0 +1,124 @@
+{
+  "accuracy": 0.8967476639093137,
+  "loss": 0.25944793224334717,
+  "mean_iou": 0.6926488520913283,
+  "iou_per_class": [
+    0.8848345053313897,
+    0.5004631988512669
+  ],
+  "class_pixels": [
+    174538,
+    34358
+  ],
+  "evaluated_pixels": 208896,
+  "confusion_matrix": [
+    [
+      165718,
+      8820
+    ],
+    [
+      12749,
+      21609
+    ]
+  ],
+  "test_images": 17,
+  "ignore_label": null,
+  "class_names": [
+    "Background",
+    "Person"
+  ],
+  "majority_baseline": {
+    "accuracy": 0.8355258118872549,
+    "mean_iou": 0.41776290594362747,
+    "iou_per_class": [
+      0.8355258118872549,
+      0.0
+    ],
+    "class_pixels": [
+      174538,
+      34358
+    ],
+    "evaluated_pixels": 208896,
+    "confusion_matrix": [
+      [
+        174538,
+        0
+      ],
+      [
+        34358,
+        0
+      ]
+    ],
+    "class": 0
+  },
+  "per_image": [
+    {
+      "image": "data/pennfudan/images/test/FudanPed00007.png",
+      "mean_iou": 0.762257820466432
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00015.png",
+      "mean_iou": 0.7121548093281879
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00020.png",
+      "mean_iou": 0.8474132052113703
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00023.png",
+      "mean_iou": 0.8080710107369984
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00037.png",
+      "mean_iou": 0.802816418427945
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00042.png",
+      "mean_iou": 0.5855715952682071
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00048.png",
+      "mean_iou": 0.6035632402887907
+    },
+    {
+      "image": "data/pennfudan/images/test/FudanPed00065.png",
+      "mean_iou": 0.600985198000769
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00024.png",
+      "mean_iou": 0.8920098527888812
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00029.png",
+      "mean_iou": 0.6322331479774781
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00037.png",
+      "mean_iou": 0.5643042017678206
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00040.png",
+      "mean_iou": 0.76121275078297
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00063.png",
+      "mean_iou": 0.7442419533192092
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00066.png",
+      "mean_iou": 0.715742673217657
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00067.png",
+      "mean_iou": 0.7301631689227451
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00068.png",
+      "mean_iou": 0.6344519674461677
+    },
+    {
+      "image": "data/pennfudan/images/test/PennPed00084.png",
+      "mean_iou": 0.6275466144062753
+    }
+  ]
+}

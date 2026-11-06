@@ -1,122 +1,95 @@
-"""Краткий отчёт из результатов двух реально выполненных экспериментов."""
-
-import csv
+"""Сформировать отчёт по сохранённым результатам лабораторной работы."""
 import json
 from pathlib import Path
 
-import numpy as np
+
+def read(path):
+    return json.loads(Path(path).read_text())
 
 
-def read_result(name, kind):
-    return json.loads(Path(f"results/{name}_{kind}.json").read_text())
+def main():
+    carla = read('results/carla_metrics.json')
+    people = read('results/pennfudan_metrics.json')
+    carla_run = read('results/carla_run.json')
+    people_run = read('results/pennfudan_run.json')
+    comparison = read('results/experiment_32/carla_comparison.json')
+    external = read('results/experiment_32/carla_external_metrics.json')
+    report = f'''# Лабораторная работа № 2
+## Сегментация изображений с помощью U-Net
+
+### Цель
+
+Реализовать U-Net и исследовать сегментацию на учебном наборе CARLA. Повторить подготовку данных, обучение и проверку модели на другом наборе — Penn-Fudan для выделения людей.
+
+### Данные
+
+- **CARLA:** 1060 изображений и масок для 23 классов. Разбиение: 848 для обучения, 106 для валидации и 106 для тестирования. [Источник изображений и масок](https://github.com/Rhythm-Adhikari1/U-Net/tree/072afa362ab567ceb8c151b18b00e05ac632bf26/data). Близкие номера кадров объединены в группы.
+- **Penn-Fudan:** 170 фотографий людей с размеченными масками. В исходной маске каждому человеку соответствует свой номер; для семантической сегментации все ненулевые номера объединены в класс «человек», 0 — фон. Случайное разбиение с seed=42: 136 изображений для обучения, 17 для валидации и 17 для теста. [Источник набора](https://github.com/swallan/PennFudanPed/tree/ec1d4583fb436b14e2062587c8b28a5018668a5e). Авторы набора: Liming Wang, Jianbo Shi, Gang Song, I-fan Shen, *Object Detection Combining Recognition and Segmentation*, ACCV 2007.
+
+Изображения и маски хранятся по отдельным папкам `images/train`, `images/val`, `images/test` и `masks/train`, `masks/val`, `masks/test`. OpenCV изменяет размер изображения до 96×128, переводит его в RGB и нормализует пиксели. Маски изменяют размер методом nearest neighbor, чтобы сохранить номера классов.
+
+### Модель
+
+Использована U-Net: пять блоков encoder, четыре блока decoder и skip connections. Функция потерь — sparse categorical crossentropy по logits, оптимизатор — Adam, batch size — 8. Базовые модели обучались с 8 начальными фильтрами. Для CARLA также сохранён дополнительный эксперимент с 32 начальными фильтрами.
+
+### CARLA
+
+Обучение выполнено в течение {carla_run['epochs']} эпох; выбрана эпоха {carla_run['best_epoch']} по validation loss. На {carla['test_images']} тестовых изображениях accuracy составила **{carla['accuracy']:.3f}**, mean IoU — **{carla['mean_iou']:.3f}**. Baseline, всегда предсказывающий самый частый обучающий класс, дал mean IoU {carla['majority_baseline']['mean_iou']:.3f}. Крупные области дороги и неба выделяются лучше редких небольших объектов.
+
+![Баланс классов CARLA](results/carla_classes.png)
+
+![Обучение CARLA](results/carla_history.png)
+
+![Предсказания CARLA](results/carla_predictions.png)
+
+![Трудные примеры CARLA](results/carla_worst_predictions.png)
+
+### Penn-Fudan: выделение людей
+
+Для набора людей модель обучалась {people_run['epochs']} эпох. По минимальному validation loss выбрана эпоха {people_run['best_epoch']}. На {people['test_images']} тестовых изображениях получены:
+
+| Метрика | Значение |
+| --- | ---: |
+| Pixel accuracy | {people['accuracy']:.3f} |
+| Mean IoU по двум классам | {people['mean_iou']:.3f} |
+| IoU фона | {people['iou_per_class'][0]:.3f} |
+| IoU человека | {people['iou_per_class'][1]:.3f} |
+| Mean IoU baseline «всегда фон» | {people['majority_baseline']['mean_iou']:.3f} |
+
+![Баланс классов Penn-Fudan](results/pennfudan_classes.png)
+
+![Обучение Penn-Fudan](results/pennfudan_history.png)
+
+![Изображение, истинная маска и предсказание](results/pennfudan_predictions.png)
+
+Модель выделяет заметные фигуры, но может пропустить части человека или объединить соседние фигуры. Тест содержит 17 изображений, поэтому результат даёт лишь приблизительную оценку. Метрики CARLA и Penn-Fudan нельзя напрямую сравнивать: наборы и классы различаются.
+
+### Дополнительный эксперимент CARLA
+
+В модели с 32 начальными фильтрами использована взвешенная функция потерь; выбор эпохи проводился по validation IoU. На тестовой части CARLA получены accuracy {comparison['test_accuracy']['32']:.3f} и mean IoU {comparison['test_mean_iou']['32']:.3f}. Одновременно менялись ширина модели и функция потерь, поэтому их отдельный вклад не определён. Поскольку тест модели с 8 фильтрами уже анализировался, сравнение имеет исследовательский характер.
+
+![Предсказания модели CARLA с 32 фильтрами](results/experiment_32/carla_predictions.png)
+
+![Трудные примеры CARLA с 32 фильтрами](results/experiment_32/carla_worst_predictions.png)
+
+Дополнительно использованы 223 кадра из [другого набора CARLA](https://github.com/cpow-89/carla_image_segmentation_dataset/tree/aa0eb00150f3fda6f7950f097baa145890717979). В нём оцениваются классы 1–12, а неразмеченные пиксели исключены. Mean IoU составил {external['models']['8']['mean_iou']:.3f} для модели с 8 фильтрами и {external['models']['32']['mean_iou']:.3f} для модели с 32 фильтрами. Эти значения относятся к другой схеме оценки.
+
+![Проверка на другом наборе CARLA](results/experiment_32/carla_external_predictions.png)
+
+### Вывод
+
+U-Net обучена на двух задачах: многоклассовой сегментации CARLA и выделении людей из фона. Результаты на тестовых масках подтверждают работу модели, но также показывают ошибки на небольших объектах и границах.
+
+### Собственные фотографии
+
+Обученные модели дополнительно применены к четырём собственным фотографиям. Для этих изображений эталонных масок нет, поэтому IoU не рассчитывался. Модель людей ошибочно выделяет части фона на некоторых снимках; это видно на предсказанных масках.
+
+![Собственные фотографии и модели CARLA](results/carla_own_photos.png)
+
+![Собственные фотографии и выделение людей](results/pennfudan_own_photos.png)
+'''
+    Path('REPORT.md').write_text(report, encoding='utf-8')
 
 
-def write_report():
-    text = ["# Лабораторная работа № 2", "",
-            "## Цель и метод", "",
-            "Построить U-Net для сегментации изображений и повторить обучение на двух наборах: "
-            "учебном CARLA и реальном CamVid. Encoder содержит пять блоков, decoder — четыре. "
-            "Между ними есть skip connections. Использованы Adam и sparse categorical "
-            "crossentropy по logits, batch size 8 и 40 эпох. Вход — 96×128×3. "
-            "Сначала рассмотрена модель с 8 начальными фильтрами, затем — модель "
-            "с 32 фильтрами и взвешенной функцией потерь.", "",
-            "## Данные", "",
-            "CARLA: 1060 изображений и соответствующих масок для 23 классов. "
-            "[Источник набора данных](https://github.com/Rhythm-Adhikari1/U-Net/tree/072afa362ab567ceb8c151b18b00e05ac632bf26/data). "
-            "Разбиение 848/106/106 выполнено целыми группами близких номеров "
-            "кадров. CamVid: 701 реальное изображение, 11 смысловых классов и Void, "
-            "сохранено опубликованное разбиение 367/101/233. Маски приведены к размеру "
-            "входа через nearest neighbor. В CARLA ID читается из красного канала, "
-            "в CamVid Void исключён из loss и оценки. Источники и версии указаны в README; "
-            "контрольные суммы — в results/data_manifest.json.", "",
-            "## Итоговые результаты", "",
-            "Лучшая модель выбрана по validation loss. Baseline предсказывает только "
-            "самый частый класс train. Тест не использовался для выбора эпохи.", "",
-            "| Набор | Тестовых кадров | Accuracy | Baseline accuracy | Mean IoU | Baseline mIoU | Лучшая эпоха |",
-            "| --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
-    for name in ["carla", "camvid"]:
-        scores, run = read_result(name, "metrics"), read_result(name, "run")
-        baseline = scores["majority_baseline"]
-        text.append(f"| {name.upper()} | {scores['test_images']} | {scores['accuracy']:.4f} | "
-                    f"{baseline['accuracy']:.4f} | {scores['mean_iou']:.4f} | "
-                    f"{baseline['mean_iou']:.4f} | {run['best_epoch']} |")
-    for name in ["carla", "camvid"]:
-        scores, stats, run = [read_result(name, kind) for kind in ["metrics", "data", "run"]]
-        classes = scores["class_names"]
-        history = list(csv.DictReader(Path(f"results/{name}_history.csv").open()))
-        best = history[run["best_epoch"] - 1]
-        last = history[-1]
-        if run["best_epoch"] < run["epochs"] and float(last["val_loss"]) > float(best["val_loss"]) * 1.05:
-            trend = ("К концу обучения validation loss ухудшилась при меньшей train loss — "
-                     "это признак переобучения. Для теста использована более ранняя эпоха. ")
-        else:
-            trend = "В этом запуске минимальная validation loss достигнута на последней эпохе. "
-        majority = stats["majority_class"]
-        text += ["", "## " + name.upper(), "",
-                 f"Обучение выполнено на всех {run['split_sizes']['train']} обучающих кадрах, "
-                 f"{run['epochs']} эпох. У модели {run['parameters']:,} параметров. "
-                 f"На выбранной эпохе train loss = {float(best['loss']):.4f}, "
-                 f"validation loss = {float(best['val_loss']):.4f}. "
-                 f"На последней эпохе train loss = {float(last['loss']):.4f}, "
-                 f"validation loss = {float(last['val_loss']):.4f}. "
-                 + trend +
-                 f"Baseline использует класс {classes[majority]}. "
-                 f"Превышение baseline: {(scores['accuracy'] - scores['majority_baseline']['accuracy']) * 100:.2f} "
-                 f"процентного пункта accuracy и {scores['mean_iou'] - scores['majority_baseline']['mean_iou']:.4f} mean IoU.", "",
-                 f"![Баланс классов](results/{name}_classes.png)", "",
-                 f"![Обучение](results/{name}_history.png)", "",
-                 "| Класс | Оцениваемых пикселей | IoU |", "| --- | ---: | ---: |"]
-        for label, count, score in zip(classes, scores["class_pixels"], scores["iou_per_class"]):
-            value = f"{score:.4f}" if score is not None else "не оценивается"
-            text.append(f"| {label} | {count} | {value} |")
-        text += ["", f"![Тестовые предсказания](results/{name}_predictions.png)", "",
-                 f"![Худшие примеры](results/{name}_worst_predictions.png)", "",
-                 "Самые частые ошибки по числу пикселей:", ""]
-        confusion = np.array(scores["confusion_matrix"])
-        np.fill_diagonal(confusion, 0)
-        errors = sorted(zip(*np.nonzero(confusion)), key=lambda ij: confusion[ij], reverse=True)[:5]
-        text += [f"- {classes[true]} → {classes[pred]}: {confusion[true, pred]} пикселей."
-                 for true, pred in errors]
-        low = sorted((value, classes[i]) for i, value in enumerate(scores["iou_per_class"])
-                     if value is not None and scores["class_pixels"][i] > 0)[:3]
-        text += ["", "Наименьшие IoU среди присутствующих классов: " +
-                 ", ".join(f"{label} ({value:.3f})" for value, label in low) + ". "
-                 "Общая accuracy скрывает часть этих ошибок из-за дисбаланса числа пикселей. "
-                 "Худшие кадры выбраны по IoU изображения, без повторения ближайших "
-                 "соседей одной серии; при их просмотре нужно обращать "
-                 "внимание на исчезающие тонкие детали и слияние областей разных классов."]
-        missed = [classes[i] for i, value in enumerate(scores["iou_per_class"])
-                  if value == 0 and scores["class_pixels"][i] > 0]
-        if missed:
-            text += ["", "У классов " + ", ".join(missed) +
-                     " IoU равен нулю при наличии тестовых пикселей. "
-                     "Их распознавание в этом эксперименте не получилось, несмотря на общую accuracy."]
-    text += ["", "## Проверки и ограничения", "",
-             "Проверены размеры выходов сети, предобработка изображений и масок, "
-             "расчёт IoU и сохранение модели. Также проверено отсутствие одинаковых "
-             "изображений между частями данных и разделение близких кадров CARLA.", "",
-             "Результаты получены при одном seed=42. Группировка CARLA по ID уменьшает "
-             "утечку соседних кадров, но не гарантирует независимость поездок без "
-             "метаданных. CamVid использует стандартный тест, однако сцены внутри наборов "
-             "могут иметь сходные условия. Низкое разрешение и малая ширина сети ограничивают "
-             "качество мелких классов. Прямое сравнение чисел CARLA и CamVid некорректно: "
-             "различаются классы, источники и разбиения.", "",
-             "## Вывод", "",
-             "Реализован и выполнен полный процесс сегментации: подготовка двух наборов, "
-             "построение U-Net, обучение, выбор модели по валидации и независимая тестовая "
-             "оценка. Поклассовый IoU и сравнение с baseline позволяют увидеть ограничения, "
-             "которые не показывает одна accuracy. Следующий шаг для повышения качества — "
-             "увеличить разрешение и проверить балансировку функции потерь на валидации."]
-    report = "\n".join(text) + "\n"
-    folder = Path("results/experiment_32")
-    if all((folder / f"{name}_comparison.json").exists() for name in ["carla", "camvid"]):
-        from update_work import report_appendix
-        report = report.replace(
-            "Следующий шаг для повышения качества — увеличить разрешение и проверить балансировку функции потерь на валидации.",
-            "Для дальнейшей проверки нужны новые тестовые кадры и повторения с другими seed.")
-        report += "\n" + report_appendix() + "\n"
-    Path("REPORT.md").write_text(report)
-
-
-if __name__ == "__main__":
-    write_report()
+if __name__ == '__main__':
+    main()

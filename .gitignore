@@ -5,6 +5,7 @@ data/
 results/*.keras
 !results/carla.keras
 !results/camvid.keras
+!results/pennfudan.keras
 results/experiment_32/*.keras
 !results/experiment_32/carla_inference.keras
 !results/experiment_32/camvid_inference.keras

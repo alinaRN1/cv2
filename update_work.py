@@ -78,10 +78,10 @@ def report_appendix():
              "Обе версии используют одинаковые данные, разрешение и разбиения. "
              "Одновременно изменились ширина сети и функция потерь, поэтому определить "
              "отдельный вклад каждого изменения нельзя. Их loss нельзя сравнивать напрямую. "
-             "Предыдущая модель была выбрана по минимальному validation loss, новая — "
+             "Модель с 8 фильтрами выбрана по минимальному validation loss, модель с 32 — "
              "по максимальному validation IoU; схемы выбора эпох различаются. "
-             "Результаты теста прежней модели уже изучались при выборе направления "
-             "доработки; поэтому эти измерения следует считать исследовательскими. "
+             "Тестовые результаты модели с 8 фильтрами анализировались при выборе "
+             "следующего эксперимента, поэтому сравнение носит исследовательский характер. "
              + ("Дополнительная проверка на новых кадрах описана в разделе 8."
                 if external_ready else "Для независимой оценки нужен новый набор кадров."), ""]
     for name in ["carla", "camvid"]:
@@ -110,8 +110,6 @@ def report_appendix():
         if losses:
             lines += ["", "Наибольшее снижение IoU: " +
                       ", ".join(f"{label} ({delta:+.3f})" for delta, label in losses) + "."]
-        lines += ["", f"![Предсказания {name}](results/experiment_32/{name}_predictions.png)",
-                  "", f"![Трудные примеры {name}](results/experiment_32/{name}_worst_predictions.png)", ""]
         matrix = metrics["confusion_matrix"]
         errors = sorted(((matrix[true][pred], true, pred)
                          for true in range(len(matrix)) for pred in range(len(matrix))
@@ -151,7 +149,6 @@ def report_appendix():
                   "Предсказание других классов на размеченных пикселях считается ошибкой. "
                   "Код 10 называется Car в этом наборе и Vehicle в учебном. "
                   "Сравнивать это значение напрямую с mIoU по 23 классам нельзя. "
-                  "На иллюстрациях неразмеченные области замаскированы и в предсказаниях. "
                   f"Оценено {valid_pixels} из {total_pixels} пикселей после resize "
                   f"({valid_pixels / total_pixels:.1%}); остальные имеют метку Unlabeled.", "",
                   external_table(), "",
@@ -176,7 +173,6 @@ def report_appendix():
                       "поэтому recall класса Pedestrian по ней определить нельзя. "
                       f"На остальных размеченных пикселях модель с 8 фильтрами ошибочно "
                       f"предсказала Pedestrian {false_old} раз, с 32 фильтрами — {false_new} раз."]
-        lines += ["", "![Независимые кадры](results/experiment_32/carla_external_predictions.png)", ""]
         lines += ["### Вывод по дополнительному эксперименту", ""]
         for name in ["carla", "camvid"]:
             choice = read_comparison(name)
@@ -188,6 +184,19 @@ def report_appendix():
                   f"baseline получил {result['baseline_road']['mean_iou']:.3f}. "
                   "Результат описывает только оцениваемые классы и условия этого набора. "
                   "Для устойчивых выводов нужны другие сцены и повторения обучения с разными seed.", ""]
+    lines += ["", "## 9. Проверка на собственных фотографиях", "",
+              "Для дополнительной визуальной проверки использованы четыре собственные "
+              "фотографии: город, набережная и два горных дорожных вида. Каждый снимок "
+              "приведён к 96×128 и обработан уже обученными моделями с 8 и 32 фильтрами. "
+              "Цвета показывают предсказанные классы; разметки этих фотографий нет, "
+              "поэтому accuracy и IoU для них не вычислялись.", "",
+              "![Фотографии и предсказания CARLA](results/carla_own_photos.png)", "",
+              "![Фотографии и предсказания CamVid](results/camvid_own_photos.png)", "",
+              "На городских снимках обе модели выделяют отдельные крупные области, но "
+              "ошибаются на мелких объектах и границах. Горные сцены отличаются от "
+              "дорожных кадров обучения: местность и другие детали нередко получают "
+              "неподходящие дорожные классы. Это качественная проверка переноса, "
+              "а приведённые выше численные метрики относятся к размеченным тестовым наборам."]
     return "\n".join(lines)
 
 
@@ -198,11 +207,10 @@ def update():
     notebook_path = Path("CV_L2.ipynb")
     notebook = nbformat.read(notebook_path, as_version=4)
     for cell in notebook.cells:
-        if cell.cell_type == "markdown" and "публичное зеркало учебного набора" in cell.source:
+        if cell.cell_type == "markdown":
             note = ("Имена первых файлов и пример `002128.png` совпадают с приложенным notebook; "
                     "полное побайтовое сравнение с недоступным Google Drive не проводилось.")
-            if note not in cell.source:
-                cell.source += "\n\n" + note + "\n"
+            cell.source = cell.source.replace("\n\n" + note, "")
         if cell.cell_type == "code":
             cell.source = cell.source.replace(
                 "RETRAIN = False  # True — заново обучить обе модели; False — использовать готовые при наличии.",
@@ -238,23 +246,22 @@ for name in ["carla", "camvid"]:
         new_text = f"{new:.3f}" if new is not None else "—"
         rows.append(f"| {label} | {pixels} | {old_text} | {new_text} |")
     display(Markdown("### " + name.upper() + "\\n\\n" + "\\n".join(rows)))
-    for kind in ["curves", "predictions", "worst_predictions"]:
+    for kind in ["curves"]:
         display(Image(filename=f"results/experiment_32/{name}_{kind}.png"))
 '''))
     independent_note = ("Дополнительная проверка на новых кадрах приведена ниже."
                         if (DIRECTORY / "carla_external_metrics.json").exists()
                         else "Для независимой итоговой оценки нужны новые тестовые кадры.")
     notebook.cells.append(nbformat.v4.new_markdown_cell(
-        "Для повторного обучения используются команды из README. Результаты прежней "
-        "модели на этой тестовой части уже рассматривались до доработки, поэтому "
-        "повторное сравнение исследовательское. " + independent_note))
+        "Тестовый набор использовался при анализе модели с 8 фильтрами, поэтому "
+        "сравнение на нём носит исследовательский характер. " + independent_note))
     if (DIRECTORY / "carla_external_metrics.json").exists():
         notebook.cells.append(nbformat.v4.new_markdown_cell(
             "## 8. Проверка на другом наборе CARLA\n\n"
             "Контрольные 223 кадра из другого опубликованного набора не участвовали "
             "в обучении и выборе модели. В этой версии CARLA поддерживаются классы "
             "1–12; Unlabeled=0 исключается, а ошибки предсказания других классов "
-            "учитываются. На иллюстрациях исключённые области замаскированы. "
+            "учитываются. "
             "Пешеходов в контрольной части нет. Данные и ограничения "
             "сравнения описаны в отчёте."))
         notebook.cells.append(nbformat.v4.new_code_cell('''from update_work import external_table
@@ -275,7 +282,18 @@ display(Markdown("\\n".join(rows)))
 for width in ["8", "32"]:
     false_pedestrian = sum(row[4] for row in external["models"][width]["confusion_matrix"])
     print(f"Ошибочные предсказания пешеходов, {width} фильтров: {false_pedestrian} пикселей")
-display(Image(filename="results/experiment_32/carla_external_predictions.png"))
+'''))
+    notebook.cells.append(nbformat.v4.new_markdown_cell(
+        "## 9. Собственные фотографии\n\n"
+        "Для визуальной проверки использую четыре собственные фотографии. "
+        "Показываю предсказания обеих обученных моделей после изменения размера "
+        "до 96×128. Масок для этих фотографий нет, поэтому IoU на них не вычисляется. "
+        "Горные виды отличаются от дорожных сцен обучения; мелкие объекты и границы "
+        "часто распознаются неверно."))
+    notebook.cells.append(nbformat.v4.new_code_cell('''from own_photos import show_own_photos
+for dataset in ["carla", "camvid"]:
+    print(dataset.upper())
+    _ = show_own_photos(dataset)
 '''))
     for cell in notebook.cells:
         if cell.cell_type == "code":
@@ -343,7 +361,8 @@ python verify_results.py
 в архиве есть контрольные суммы, исходные изображения скачиваются отдельно.
 Повторный запуск проверки сверяет файлы с сохранённым манифестом.
 
-Старый тест уже изучался при доработке, поэтому сравнение на нём исследовательское.
+Тестовые результаты модели с 8 фильтрами учитывались при выборе следующего
+эксперимента, поэтому сравнение на том же тесте носит исследовательский характер.
 Дополнительные 223 кадра используются после выбора модели по validation. Для
 новых научных выводов полезно также повторить обучение с несколькими seed и
 изучить реальные изображения других городов.

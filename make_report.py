@@ -69,7 +69,9 @@ def write_report():
         for label, count, score in zip(classes, scores["class_pixels"], scores["iou_per_class"]):
             value = f"{score:.4f}" if score is not None else "не оценивается"
             text.append(f"| {label} | {count} | {value} |")
-        text += ["", "Самые частые ошибки по числу пикселей:", ""]
+        text += ["", f"![Тестовые предсказания](results/{name}_predictions.png)", "",
+                 f"![Худшие примеры](results/{name}_worst_predictions.png)", "",
+                 "Самые частые ошибки по числу пикселей:", ""]
         confusion = np.array(scores["confusion_matrix"])
         np.fill_diagonal(confusion, 0)
         errors = sorted(zip(*np.nonzero(confusion)), key=lambda ij: confusion[ij], reverse=True)[:5]
@@ -79,7 +81,10 @@ def write_report():
                      if value is not None and scores["class_pixels"][i] > 0)[:3]
         text += ["", "Наименьшие IoU среди присутствующих классов: " +
                  ", ".join(f"{label} ({value:.3f})" for value, label in low) + ". "
-                 "Общая accuracy скрывает часть этих ошибок из-за дисбаланса числа пикселей."]
+                 "Общая accuracy скрывает часть этих ошибок из-за дисбаланса числа пикселей. "
+                 "Худшие кадры выбраны по IoU изображения, без повторения ближайших "
+                 "соседей одной серии; при их просмотре нужно обращать "
+                 "внимание на исчезающие тонкие детали и слияние областей разных классов."]
         missed = [classes[i] for i, value in enumerate(scores["iou_per_class"])
                   if value == 0 and scores["class_pixels"][i] > 0]
         if missed:

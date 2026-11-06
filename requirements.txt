@@ -1,0 +1,7 @@
+tensorflow-cpu==2.18.1
+numpy==2.0.2
+opencv-python-headless==4.11.0.86
+matplotlib==3.9.4
+nbformat==5.10.4
+nbclient==0.10.2
+ipykernel==6.29.5

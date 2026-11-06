@@ -1,0 +1,1358 @@
+{
+  "accuracy": 0.7861388955519936,
+  "loss": 0.8051537871360779,
+  "mean_iou": 0.3538565840194425,
+  "iou_per_class": [
+    0.8748578534205356,
+    0.6219899525284172,
+    0.0,
+    0.8357883342751903,
+    0.5000874643621086,
+    0.4483793251252642,
+    0.0,
+    0.057969406576337944,
+    0.553350087926014,
+    0.0,
+    0.0,
+    null
+  ],
+  "class_pixels": [
+    497502,
+    706359,
+    34018,
+    727145,
+    265356,
+    325017,
+    29146,
+    34194,
+    113145,
+    18335,
+    5422,
+    0
+  ],
+  "evaluated_pixels": 2755639,
+  "confusion_matrix": [
+    [
+      460827,
+      10576,
+      13,
+      22,
+      94,
+      25280,
+      0,
+      8,
+      678,
+      4,
+      0,
+      0
+    ],
+    [
+      6065,
+      548727,
+      8,
+      2017,
+      19672,
+      96354,
+      1,
+      21551,
+      11947,
+      17,
+      0,
+      0
+    ],
+    [
+      3997,
+      16594,
+      0,
+      691,
+      3926,
+      6169,
+      0,
+      1811,
+      830,
+      0,
+      0,
+      0
+    ],
+    [
+      38,
+      1504,
+      7,
+      699554,
+      22856,
+      124,
+      0,
+      84,
+      2976,
+      2,
+      0,
+      0
+    ],
+    [
+      30,
+      3731,
+      0,
+      95890,
+      162952,
+      606,
+      0,
+      1123,
+      1024,
+      0,
+      0,
+      0
+    ],
+    [
+      18201,
+      80922,
+      3,
+      227,
+      1407,
+      212352,
+      0,
+      7651,
+      4249,
+      5,
+      0,
+      0
+    ],
+    [
+      549,
+      16940,
+      1,
+      15,
+      112,
+      11131,
+      0,
+      223,
+      174,
+      1,
+      0,
+      0
+    ],
+    [
+      166,
+      18362,
+      0,
+      923,
+      5897,
+      1942,
+      0,
+      4180,
+      2721,
+      3,
+      0,
+      0
+    ],
+    [
+      194,
+      16191,
+      1,
+      9178,
+      2727,
+      5281,
+      0,
+      1842,
+      77723,
+      7,
+      1,
+      0
+    ],
+    [
+      3,
+      9490,
+      0,
+      326,
+      2486,
+      1322,
+      0,
+      3012,
+      1696,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1543,
+      0,
+      565,
+      1314,
+      373,
+      0,
+      608,
+      1019,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "test_images": 233,
+  "ignore_label": 11,
+  "class_names": [
+    "Sky",
+    "Building",
+    "Pole",
+    "Road",
+    "Pavement",
+    "Tree",
+    "SignSymbol",
+    "Fence",
+    "Car",
+    "Pedestrian",
+    "Bicyclist",
+    "Void"
+  ],
+  "majority_baseline": {
+    "accuracy": 0.26387527538984606,
+    "mean_iou": 0.023988661399076915,
+    "iou_per_class": [
+      0.0,
+      0.0,
+      0.0,
+      0.26387527538984606,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      null
+    ],
+    "class_pixels": [
+      497502,
+      706359,
+      34018,
+      727145,
+      265356,
+      325017,
+      29146,
+      34194,
+      113145,
+      18335,
+      5422,
+      0
+    ],
+    "evaluated_pixels": 2755639,
+    "confusion_matrix": [
+      [
+        0,
+        0,
+        0,
+        497502,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        706359,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        34018,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        727145,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        265356,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        325017,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        29146,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        34194,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        113145,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        18335,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        5422,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "class": 3
+  },
+  "per_image": [
+    {
+      "image": "data/camvid/images/test/0001TP_008550.png",
+      "mean_iou": 0.4448728516043978
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008580.png",
+      "mean_iou": 0.38242285522377434
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008610.png",
+      "mean_iou": 0.3784597406071153
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008640.png",
+      "mean_iou": 0.3018276202009145
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008670.png",
+      "mean_iou": 0.42127480239834014
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008700.png",
+      "mean_iou": 0.46893038291038647
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008730.png",
+      "mean_iou": 0.4592412603508479
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008760.png",
+      "mean_iou": 0.41093325294481603
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008790.png",
+      "mean_iou": 0.3944531083062154
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008820.png",
+      "mean_iou": 0.43042582825695586
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008850.png",
+      "mean_iou": 0.44024061013024574
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008880.png",
+      "mean_iou": 0.3856920143388272
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008910.png",
+      "mean_iou": 0.3860861378938773
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008940.png",
+      "mean_iou": 0.38044219267774176
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_008970.png",
+      "mean_iou": 0.35813294508038407
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009000.png",
+      "mean_iou": 0.3339468521176808
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009030.png",
+      "mean_iou": 0.34386119349154237
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009060.png",
+      "mean_iou": 0.33887492939411157
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009090.png",
+      "mean_iou": 0.3415039747630397
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009120.png",
+      "mean_iou": 0.36249432790917957
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009150.png",
+      "mean_iou": 0.40568016934528506
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009180.png",
+      "mean_iou": 0.3166520858971221
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009210.png",
+      "mean_iou": 0.33601017447058784
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009240.png",
+      "mean_iou": 0.3376481086294777
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009270.png",
+      "mean_iou": 0.3101081643215832
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009300.png",
+      "mean_iou": 0.31222279875260806
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009330.png",
+      "mean_iou": 0.3136538685190548
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009360.png",
+      "mean_iou": 0.3099984293119134
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009390.png",
+      "mean_iou": 0.3150133090652639
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009420.png",
+      "mean_iou": 0.31384491833007133
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009450.png",
+      "mean_iou": 0.30968609142547465
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009480.png",
+      "mean_iou": 0.3219719539990135
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009510.png",
+      "mean_iou": 0.39535365565488184
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009540.png",
+      "mean_iou": 0.35277035090918646
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009570.png",
+      "mean_iou": 0.34067225522319505
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009600.png",
+      "mean_iou": 0.33499314375181294
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009630.png",
+      "mean_iou": 0.3741548789087986
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009660.png",
+      "mean_iou": 0.4016401304786011
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009690.png",
+      "mean_iou": 0.39727139049240606
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009720.png",
+      "mean_iou": 0.39563145319326776
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009750.png",
+      "mean_iou": 0.44227612293059193
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009780.png",
+      "mean_iou": 0.4171220066486951
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009810.png",
+      "mean_iou": 0.4220177650825209
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009840.png",
+      "mean_iou": 0.3841418728931352
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009870.png",
+      "mean_iou": 0.4118658838743244
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009900.png",
+      "mean_iou": 0.3670597470304019
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009930.png",
+      "mean_iou": 0.33149539486058316
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009960.png",
+      "mean_iou": 0.3334087641391112
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_009990.png",
+      "mean_iou": 0.11452682562248308
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010020.png",
+      "mean_iou": 0.29071794034998527
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010050.png",
+      "mean_iou": 0.3444076569336468
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010080.png",
+      "mean_iou": 0.37777307433113705
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010110.png",
+      "mean_iou": 0.3779936998882909
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010140.png",
+      "mean_iou": 0.37033191838140345
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010170.png",
+      "mean_iou": 0.4061096670058899
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010200.png",
+      "mean_iou": 0.4043375204801059
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010230.png",
+      "mean_iou": 0.4908194177995379
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010260.png",
+      "mean_iou": 0.3936936077744731
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010290.png",
+      "mean_iou": 0.3276591061847037
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010320.png",
+      "mean_iou": 0.39996517475410825
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010350.png",
+      "mean_iou": 0.4289026628317725
+    },
+    {
+      "image": "data/camvid/images/test/0001TP_010380.png",
+      "mean_iou": 0.37743309916144374
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00000.png",
+      "mean_iou": 0.42196886260420297
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00030.png",
+      "mean_iou": 0.4481288379474099
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00060.png",
+      "mean_iou": 0.4542822139980183
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00090.png",
+      "mean_iou": 0.4359400429114039
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00120.png",
+      "mean_iou": 0.4148009348606971
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00150.png",
+      "mean_iou": 0.42438859209287527
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00180.png",
+      "mean_iou": 0.4134400618740596
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00210.png",
+      "mean_iou": 0.4043919176266539
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00240.png",
+      "mean_iou": 0.37746692427485296
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00270.png",
+      "mean_iou": 0.40705747868564235
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00300.png",
+      "mean_iou": 0.3696950209447704
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00330.png",
+      "mean_iou": 0.30108128241695464
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00360.png",
+      "mean_iou": 0.3537899413777065
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00390.png",
+      "mean_iou": 0.35599273432587875
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00420.png",
+      "mean_iou": 0.3488197833561727
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00450.png",
+      "mean_iou": 0.38817936108759693
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00480.png",
+      "mean_iou": 0.3770498757355548
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00510.png",
+      "mean_iou": 0.3767016885387127
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00540.png",
+      "mean_iou": 0.41614127214024893
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00570.png",
+      "mean_iou": 0.35865014261289213
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00600.png",
+      "mean_iou": 0.35512018730835104
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00630.png",
+      "mean_iou": 0.3301453326831185
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00660.png",
+      "mean_iou": 0.3700309734158661
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00690.png",
+      "mean_iou": 0.37676339575681916
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00720.png",
+      "mean_iou": 0.3985974547196413
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00750.png",
+      "mean_iou": 0.4297656092923572
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00780.png",
+      "mean_iou": 0.32396688225510795
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00810.png",
+      "mean_iou": 0.3264360272913242
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00840.png",
+      "mean_iou": 0.34977675300714356
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00870.png",
+      "mean_iou": 0.3711637888802924
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00900.png",
+      "mean_iou": 0.31441193864810074
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00930.png",
+      "mean_iou": 0.34210768850280204
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00960.png",
+      "mean_iou": 0.34933973211682623
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f00990.png",
+      "mean_iou": 0.34140608940881534
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01020.png",
+      "mean_iou": 0.3634320762402591
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01050.png",
+      "mean_iou": 0.31778637465360765
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01080.png",
+      "mean_iou": 0.3219960983089608
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01110.png",
+      "mean_iou": 0.317208469375387
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01140.png",
+      "mean_iou": 0.314187365083269
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01170.png",
+      "mean_iou": 0.3168195437785769
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01200.png",
+      "mean_iou": 0.31900818606071285
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01230.png",
+      "mean_iou": 0.3137788356353284
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01260.png",
+      "mean_iou": 0.38058340897351267
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01290.png",
+      "mean_iou": 0.4171428739672625
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01320.png",
+      "mean_iou": 0.43306339398582516
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01350.png",
+      "mean_iou": 0.5085937102712342
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01380.png",
+      "mean_iou": 0.46182832983659894
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01410.png",
+      "mean_iou": 0.42117499455271645
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01440.png",
+      "mean_iou": 0.3746261859527185
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01470.png",
+      "mean_iou": 0.5112037304145536
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01500.png",
+      "mean_iou": 0.37391357665377206
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01530.png",
+      "mean_iou": 0.3513506500317626
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01560.png",
+      "mean_iou": 0.27796800301521823
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01590.png",
+      "mean_iou": 0.33564125212943596
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01620.png",
+      "mean_iou": 0.43246102821160415
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01650.png",
+      "mean_iou": 0.34579467694655364
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01680.png",
+      "mean_iou": 0.3190624956922087
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01710.png",
+      "mean_iou": 0.36418035342299876
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01740.png",
+      "mean_iou": 0.235897199295102
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01770.png",
+      "mean_iou": 0.35799957191330145
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01800.png",
+      "mean_iou": 0.2865602368174981
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01830.png",
+      "mean_iou": 0.314272723816289
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01860.png",
+      "mean_iou": 0.34434775386174027
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01890.png",
+      "mean_iou": 0.3707237063248543
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01920.png",
+      "mean_iou": 0.32207433125538626
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01950.png",
+      "mean_iou": 0.3556021282630087
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f01980.png",
+      "mean_iou": 0.342804449542236
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02010.png",
+      "mean_iou": 0.33240219959883477
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02040.png",
+      "mean_iou": 0.3302963027124486
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02070.png",
+      "mean_iou": 0.3159405675056998
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02100.png",
+      "mean_iou": 0.34361643928929075
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02130.png",
+      "mean_iou": 0.3401550154987675
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02160.png",
+      "mean_iou": 0.3174213748253655
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02190.png",
+      "mean_iou": 0.35904269126966937
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02220.png",
+      "mean_iou": 0.33415128813404466
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02250.png",
+      "mean_iou": 0.33146188911032537
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02280.png",
+      "mean_iou": 0.3110377574787287
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02310.png",
+      "mean_iou": 0.2962613568294047
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02340.png",
+      "mean_iou": 0.32175850145434703
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02370.png",
+      "mean_iou": 0.35149314191915465
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02400.png",
+      "mean_iou": 0.4067216933971756
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02430.png",
+      "mean_iou": 0.3968191398743273
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02460.png",
+      "mean_iou": 0.3476207658083379
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02490.png",
+      "mean_iou": 0.3757599270475681
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02520.png",
+      "mean_iou": 0.35814802299656223
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02550.png",
+      "mean_iou": 0.32811581870048706
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02580.png",
+      "mean_iou": 0.3358336729682486
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02610.png",
+      "mean_iou": 0.16382373147475718
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02640.png",
+      "mean_iou": 0.34750588290537743
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02670.png",
+      "mean_iou": 0.3039596707541531
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02700.png",
+      "mean_iou": 0.3469512003954593
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02730.png",
+      "mean_iou": 0.33741315722049553
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02760.png",
+      "mean_iou": 0.3993843643850726
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02790.png",
+      "mean_iou": 0.3539593137430916
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02820.png",
+      "mean_iou": 0.3502648961744372
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02850.png",
+      "mean_iou": 0.3618701804867374
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02880.png",
+      "mean_iou": 0.3518694834573049
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02910.png",
+      "mean_iou": 0.31818604717784293
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02940.png",
+      "mean_iou": 0.3664305356002463
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f02970.png",
+      "mean_iou": 0.4271361937095767
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03000.png",
+      "mean_iou": 0.40608770585556186
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03030.png",
+      "mean_iou": 0.4154475798481835
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03060.png",
+      "mean_iou": 0.3934640154723453
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03090.png",
+      "mean_iou": 0.3364029607814264
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03120.png",
+      "mean_iou": 0.31626051424291823
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03150.png",
+      "mean_iou": 0.3840871642022631
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03180.png",
+      "mean_iou": 0.36722935219392644
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03210.png",
+      "mean_iou": 0.3802058873079456
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03240.png",
+      "mean_iou": 0.3580798959266683
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03270.png",
+      "mean_iou": 0.35909524321201214
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03300.png",
+      "mean_iou": 0.2826507749232608
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03330.png",
+      "mean_iou": 0.30160153186712046
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03360.png",
+      "mean_iou": 0.3336767499155611
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03390.png",
+      "mean_iou": 0.26156334771343304
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03420.png",
+      "mean_iou": 0.22401176855705457
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03450.png",
+      "mean_iou": 0.23558831876590552
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03480.png",
+      "mean_iou": 0.2719326198102359
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03510.png",
+      "mean_iou": 0.3196612623526773
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03540.png",
+      "mean_iou": 0.2959289235200766
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03570.png",
+      "mean_iou": 0.29601311803699704
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03600.png",
+      "mean_iou": 0.2798744330932802
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03630.png",
+      "mean_iou": 0.29668048235886013
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03660.png",
+      "mean_iou": 0.33209015041421236
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03690.png",
+      "mean_iou": 0.2999734635687223
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03720.png",
+      "mean_iou": 0.2765728019201392
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03750.png",
+      "mean_iou": 0.26999305043691946
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03780.png",
+      "mean_iou": 0.3244978314569283
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03810.png",
+      "mean_iou": 0.3403229207872846
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03840.png",
+      "mean_iou": 0.38507604450114075
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03870.png",
+      "mean_iou": 0.38085842660413716
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03900.png",
+      "mean_iou": 0.3201897912129494
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03930.png",
+      "mean_iou": 0.34246610755655255
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03960.png",
+      "mean_iou": 0.3605138143802222
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f03990.png",
+      "mean_iou": 0.3799105436625496
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04020.png",
+      "mean_iou": 0.40444125709420753
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04050.png",
+      "mean_iou": 0.44820919265565706
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04080.png",
+      "mean_iou": 0.3923855491902644
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04110.png",
+      "mean_iou": 0.43661957165277004
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04140.png",
+      "mean_iou": 0.46977169588791645
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04170.png",
+      "mean_iou": 0.4136276341682826
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04200.png",
+      "mean_iou": 0.37470801282543215
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04230.png",
+      "mean_iou": 0.35408806978131085
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04260.png",
+      "mean_iou": 0.3036718992498578
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04290.png",
+      "mean_iou": 0.3113012828312588
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04320.png",
+      "mean_iou": 0.3085008422497849
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04350.png",
+      "mean_iou": 0.27862583694306553
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04380.png",
+      "mean_iou": 0.26140999634912093
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04410.png",
+      "mean_iou": 0.29841608251109364
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04440.png",
+      "mean_iou": 0.25457054225393416
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04470.png",
+      "mean_iou": 0.30585943107688246
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04500.png",
+      "mean_iou": 0.3425895321675892
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04530.png",
+      "mean_iou": 0.3370459113646872
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04560.png",
+      "mean_iou": 0.400032906190979
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04590.png",
+      "mean_iou": 0.3364376072262003
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04620.png",
+      "mean_iou": 0.26973812689156207
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04650.png",
+      "mean_iou": 0.28691811889670915
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04680.png",
+      "mean_iou": 0.32445457959399226
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04710.png",
+      "mean_iou": 0.3223783711836308
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04740.png",
+      "mean_iou": 0.33086982210725924
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04770.png",
+      "mean_iou": 0.22661679492050643
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04800.png",
+      "mean_iou": 0.310454779797508
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04830.png",
+      "mean_iou": 0.3417821620811127
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04860.png",
+      "mean_iou": 0.3291747034041345
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04890.png",
+      "mean_iou": 0.38230628263825184
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04920.png",
+      "mean_iou": 0.3118371301139226
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04950.png",
+      "mean_iou": 0.37554301522881356
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f04980.png",
+      "mean_iou": 0.35746133522046397
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f05010.png",
+      "mean_iou": 0.3379597425818132
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f05040.png",
+      "mean_iou": 0.2974344359043522
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f05070.png",
+      "mean_iou": 0.45587238431370214
+    },
+    {
+      "image": "data/camvid/images/test/Seq05VD_f05100.png",
+      "mean_iou": 0.3879422500709956
+    }
+  ]
+}
